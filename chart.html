@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receivables and Payables Chart</title>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <h2>Receivables and Payables Chart</h2>
+    <div id="chart_div"></div>
+
+    <script>
+        // Fetch the data from PHP
+        let receivables = <?php echo $total_receivables; ?>;
+        let payables = <?php echo $total_payables; ?>;
+
+        // Load the Visualization API and the corechart package
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Callback function to draw the chart
+        function drawChart() {
+            // Create the data table
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Amount'],
+                ['Receivables', receivables],
+                ['Payables', payables]
+            ]);
+
+            // Set chart options
+            var options = {
+                title: 'Receivables and Payables',
+                legend: { position: 'none' },
+                colors: ['#FF6384', '#36A2EB']
+            };
+
+            // Instantiate and draw the chart
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+</html>

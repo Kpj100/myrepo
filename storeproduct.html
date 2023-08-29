@@ -1,0 +1,30 @@
+<?php
+// Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "accountdb";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the form data
+$id = $_POST['product-id']; 
+$productName = $_POST['product-name'];
+$quantity = $_POST['quantity'];
+$price = $_POST['price'];
+$category = $_POST['category'];
+
+// Insert the data into the database
+$sql = "INSERT INTO products (id, product_name, quantity, price, category) 
+VALUES ('$id','$productName', '$quantity', '$price', '$category'); // changed column name
+
+if ($conn->query($sql) === TRUE) {
+    echo "New product added successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+?>

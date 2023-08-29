@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Retrieve Customer Details</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f1f1f1;
+    }
+
+    .container {
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var customerData = JSON.parse(this.responseText);
+          var table = document.getElementById("customer-details");
+
+          customerData.forEach(function(customer) {
+            var row = table.insertRow();
+            var nameCell = row.insertCell();
+            var genderCell = row.insertCell();
+            var ageCell = row.insertCell();
+
+            nameCell.innerText = "Name: " + customer.name;
+            genderCell.innerText = "Gender: " + customer.gender;
+            ageCell.innerText = "number: " + customer.number;
+          });
+        }
+      };
+      xmlhttp.open("GET", "retrieve.php", true);
+      xmlhttp.send();
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Customer Details</h2>
+
+  <div class="container">
+    <table id="customer-details">
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Number</th>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>

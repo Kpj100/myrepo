@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice Form</title>
+    <style>
+        /* CSS styles here */
+    </style>
+</head>
+<body>
+    
+    <h2>Invoice Form</h2>
+    <form action="invoice.php" method="POST">
+        <label for="invoice_number">Invoice Number:</label>
+        <input type="text" id="invoice_number" name="invoice_number" required><br>
+
+        <label for="customer_id">Customer ID:</label>
+        <input type="text" id="customer_id" name="customer_id" required><br>
+
+        <label for="due_date">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" required><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Unpaid">Unpaid</option>
+            <option value="Paid">Paid</option>
+        </select><br>
+
+        <label for="total_amount">Total Amount:</label>
+        <input type="number" id="total_amount" name="total_amount" required><br>
+
+        <label for="txn_id">Transaction ID:</label>
+        <input type="text" id="txn_id" name="txn_id" required><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
